@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35825.156 d17.13
+VisualStudioVersion = 17.13.35825.156
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarkUnitFrameWork", "MarkUnitFrameWork\MarkUnitFrameWork.csproj", "{742F1962-1388-4108-980B-22199EE46DF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{7018B357-845C-4E2B-9471-54F4CD0F5542}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{742F1962-1388-4108-980B-22199EE46DF7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{742F1962-1388-4108-980B-22199EE46DF7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{742F1962-1388-4108-980B-22199EE46DF7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7018B357-845C-4E2B-9471-54F4CD0F5542}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7018B357-845C-4E2B-9471-54F4CD0F5542}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7018B357-845C-4E2B-9471-54F4CD0F5542}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7018B357-845C-4E2B-9471-54F4CD0F5542}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -15,7 +15,11 @@ namespace MarkUnitFrameWork
     {
         readonly KeyValuePair<string, object>[] keys = new KeyValuePair<string, object>[]
         {
+#if DEBUG
+            new KeyValuePair<string, object>("Host", @"https://markirovka.sandbox.crptech.ru"),
+#else
             new KeyValuePair<string, object>("Host", @"https://sdn.crpt.ru"),
+#endif
             new KeyValuePair<string, object>("TimeOutUPDSDN", 30),
             new KeyValuePair<string, object>("TimeOutBlistSDN", 15),
             new KeyValuePair<string, object>("ActiveLocalModule", false),
@@ -84,7 +88,7 @@ namespace MarkUnitFrameWork
     }
 
     
-    #endregion
+#endregion
 
     #region Models
     public class MarUnitBuilder

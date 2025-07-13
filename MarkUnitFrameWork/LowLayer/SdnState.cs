@@ -41,10 +41,11 @@ namespace MarkUnitFrameWork.LowLayer
                 latency = request.avgTimeMs;
                 ping = 0;
                 isBlocked = request.code==0?false:true;
+                
             }
         }
 
-        void UpdateLastUpdateSDN()
+        public void UpdateLastUpdateSDN()
         {
             LastUpdateSDN = DateTime.Now;
         }
@@ -66,7 +67,7 @@ namespace MarkUnitFrameWork.LowLayer
                     isBlocked = false
                 });
             }
-            UpdateLastUpdateSDN();
+            UpdateLastUpdateSDNList();
         }
 
     }
@@ -90,7 +91,7 @@ namespace MarkUnitFrameWork.LowLayer
 
         void UpdSdn()
         { 
-            if((sdnDataHosts.LastUpdateSDNList - DateTime.Now)> TimeSpan.FromHours(6) )
+            if(( DateTime.Now - sdnDataHosts.LastUpdateSDNList) > TimeSpan.FromHours(6) )
             {
                 var headers = new Dictionary<string, string>();
                 ConfigureHeaders(headers);
@@ -99,7 +100,7 @@ namespace MarkUnitFrameWork.LowLayer
                                 
             }
 
-            if((sdnDataHosts.LastUpdateSDN - DateTime.Now) > TimeSpan.FromMinutes(30))
+            if(( DateTime.Now - sdnDataHosts.LastUpdateSDN) > TimeSpan.FromMinutes(30))
             {
                 var headers = new Dictionary<string, string>();
                 ConfigureHeaders(headers);
@@ -112,6 +113,7 @@ namespace MarkUnitFrameWork.LowLayer
                     var req = conn.SenderGet<HealthCheckRequest>(Constants.SDNHEALTH);
                     host.ping = PerformPing(host.Host);
                     host.Upd(req);
+                    sdnDataHosts.UpdateLastUpdateSDN();
                 }
                 
             }
@@ -150,8 +152,8 @@ namespace MarkUnitFrameWork.LowLayer
 
         void ConfigureHeaders(IDictionary<string,string> headers)
         {
-            headers.Add("Content-Type", "application/json");
-            if(Constants.EndDateTokens < DateTime.Now)
+            //headers.Add("Content-Type", "application/json");
+            if(Constants.EndDateTokens > DateTime.Now)
                 headers.Add("X-API-KEY", settings["X-API-KEY"] as string);
             else
                 throw new Exception("Latest time static Token, please upd module to dynamic tokens");

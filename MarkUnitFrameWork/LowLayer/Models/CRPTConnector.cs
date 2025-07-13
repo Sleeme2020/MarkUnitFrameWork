@@ -52,7 +52,7 @@ namespace MarkUnitFrameWork.LowLayer.Models
             {
                 var requestString = JsonConvert.SerializeObject(request);
                 
-                var content = new StringContent(requestString, Encoding.UTF8);
+                var content = new StringContent(requestString, Encoding.UTF8, "application/json");
                 foreach (var header in headers)
                 {
                     content.Headers.Add(header.Key, header.Value);
@@ -81,9 +81,11 @@ namespace MarkUnitFrameWork.LowLayer.Models
 
                 foreach (var header in headers)
                 {
-                    request.Headers.Add(header.Key, header.Value);
+                    //request.Headers.Add(header.Key, header.Value);
+                    http.DefaultRequestHeaders.Add(header.Key, header.Value);
                 }
                 var response = http.SendAsync(request);
+                response.Wait();
                 if(response.Result.IsSuccessStatusCode)
                 {
                     var responseContent = response.Result.Content.ReadAsStringAsync();

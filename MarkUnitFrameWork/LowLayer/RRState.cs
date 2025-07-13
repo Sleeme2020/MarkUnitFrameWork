@@ -29,6 +29,7 @@ namespace MarkUnitFrameWork.LowLayer
         {
             Heders = new Dictionary<string, string>();
             Heders.Add("X-API-KEY", settings["X-API-KEY"] as string);
+            //Heders.Add("Content-Type", "application/json");
         }
 
 
