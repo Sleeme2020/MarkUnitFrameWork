@@ -21,9 +21,24 @@ namespace Test
             IMarkUnitSettingsEntity markUnitSettingsEntity = markUnitSettingBuilder.markUnitSettingsBuild();
             markUnitSettingsEntity.Set("X-API-KEY", @"79d58850-04fb-41cd-b4b8-58c0c3af6746");
 
+            ////ПРИМЕР!!! список сдн при запуске из бд если им больше 2-3 ч. можно пропускать.
+            //List<string> sdnlist = new List<string>() { 
+            //"host1",
+            //"host2"
+            
+            //};
+            ////запись в настройки
+            //markUnitSettingsEntity.Set("SDNListInit", sdnlist);
+            //// дата последнего обновления
+            //markUnitSettingsEntity.Set("DateExeptionSDN", DateTime.Now); 
+
             MarUnitBuilder marUnitBuilder = new MarUnitBuilder(markUnitSettingsEntity);
             IMarkUnitEntity markUnit = marUnitBuilder.markUnitBuild();
 
+            ////ПРИМЕР!! получаем список сдн хостов после запуска движка(успешного)
+            //var sdnlst = markUnit.GetSDN();
+            ////дата последнего апгрейда в движке
+            //var lstupddatesdn = markUnit.GetSDNDate(); 
 
             var send = new SenderRR(mark);
 

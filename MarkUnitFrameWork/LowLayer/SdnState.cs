@@ -28,8 +28,24 @@ namespace MarkUnitFrameWork.LowLayer
         {    
            hosts = new List<SDNHost>();            
         }
-        
-        
+
+        public SDNDataHosts(List<string> sdn, DateTime lastupd) : this()
+        {
+            foreach (var s in sdn)
+            {
+                hosts.Add(new SDNHost()
+                {
+                    Host = s,
+                    latency = 0,
+                    ping = 0,
+                    isBlocked = false
+                });
+            }
+            LastUpdateSDNList = lastupd;
+        }
+    
+
+
         public class SDNHost
         {
             public string Host { get; set; }
@@ -79,14 +95,29 @@ namespace MarkUnitFrameWork.LowLayer
         public SdnState(IDictionary<string, object> Settings)
         {
             settings = Settings;
-            validate();                       
-            sdnDataHosts= new SDNDataHosts();
+            validate();
+            DateTime lastUpdateTime =  DateTime.Parse(settings["DateExeptionSDN"].ToString());
+            List<string> listSDN = settings["SDNListInit"] as List<string>;
+            if (DateTime.Now - lastUpdateTime > TimeSpan.FromHours(6) )
+                sdnDataHosts = new SDNDataHosts();
+            else
+            {
+                if(listSDN.Count() > 0)
+                    sdnDataHosts = new SDNDataHosts(listSDN, lastUpdateTime);
+                else
+                    sdnDataHosts = new SDNDataHosts();
+            }
         }
 
         public SDNDataHosts GetSDN()
         {
             UpdSdn();
             return sdnDataHosts;
+        }
+
+        public DateTime LastUpdSdnDate()
+        {
+            return sdnDataHosts.LastUpdateSDNList;
         }
 
         void UpdSdn()

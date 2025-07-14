@@ -25,6 +25,8 @@ namespace MarkUnitFrameWork
             new KeyValuePair<string, object>("ActiveLocalModule", false),
             new KeyValuePair<string, object>("CountSDNConnetcFail", 2),
             new KeyValuePair<string, object>("X-API-KEY", ""),
+            new KeyValuePair<string, object>("DateExeptionSDN", DateTime.MinValue),
+            new KeyValuePair<string, object>("SDNListInit",new List<string>()),
         };
         private Dictionary<string, object> values;
         public MarkUnitSettingsEntity()

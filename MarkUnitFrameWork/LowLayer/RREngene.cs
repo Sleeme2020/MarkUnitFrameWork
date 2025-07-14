@@ -13,6 +13,8 @@ namespace MarkUnitFrameWork.LowLayer
         void UpdSDN();
         ResponseRR GetSdnOnline(SenderRR senderRRQuery);
         ResponseRR GetSdnOfline(SenderRR senderRRQuery);
+        List<string> GetSDN();
+        DateTime GetSDNDate();
     }
 
     public class ResponseRR
@@ -144,6 +146,16 @@ namespace MarkUnitFrameWork.LowLayer
         public void UpdSDN()
         {
             _sdnDataHosts = _SDNState.GetSDN();
+        }
+
+        public List<string> GetSDN()
+        {
+            return _SDNState.GetSDN().hosts.Select(x => x.Host.ToString()).ToList();
+        }
+
+        public DateTime GetSDNDate()
+        {
+            return _SDNState.LastUpdSdnDate();
         }
     }
 }
